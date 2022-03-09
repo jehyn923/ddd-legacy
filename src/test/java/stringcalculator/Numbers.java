@@ -12,17 +12,15 @@ public class Numbers {
         numbers = new ArrayList<>();
     }
 
-    public void checkIfMinus(Integer number){
-        if (number < ZERO) throw new RuntimeException();
-    }
-
     public void addNumbersFromToken(String[] token){
         Arrays.stream(token).map(Integer::parseInt)
                 .map(Number::new)
                 .forEach(number -> numbers.add(number));
     }
 
-    public List<Number> getNumbers(){
-        return this.numbers;
+    public int calculate() {
+        return numbers.stream()
+            .map(Number::getValue)
+            .reduce(0, Integer::sum);
     }
 }
